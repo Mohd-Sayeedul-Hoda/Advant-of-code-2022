@@ -30,39 +30,36 @@ func pointWin(opponent string,player string)int{
 	ret :=0
 	switch player{
 		case "X": 
-		ret += 1
 		if opponent == "A"{
 				ret += 3
 				return ret
 		}else if opponent == "B"{
-			ret += 0
+			ret += 1
 			return ret
 		}else{
-			ret += 6
+			ret += 2
 			return ret
 		}
 		case "Y":
-		ret += 2
 		if opponent == "A"{
-			ret += 6
+			ret += 1+3
 			return ret
 		}else if opponent == "B"{
-			ret += 3
+			ret += 2+3
 			return ret
 		}else{
-			ret += 0
+			ret += 3+3
 			return ret
 		}
 		case "Z":
-			ret += 3
 		if opponent == "A"{
-				ret += 0
+				ret += 2+6
 				return ret
 		}else if opponent == "B"{
-			ret += 6
+			ret += 3+6
 			return ret
 		}else{
-			ret += 3
+			ret += 1+6
 			return ret
 		}
 	}
