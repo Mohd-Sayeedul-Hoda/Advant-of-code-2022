@@ -1,65 +1,83 @@
 package main
 
-import(
+import (
 	"fmt"
 	"os"
 	"bufio"
 )
 
 func main(){
-	f, err := os.Open(os.Args[1])
+	file, err := os.Open(os.Args[1])
 	if err != nil{
-		fmt.Fprintf(os.Stderr, "Can't open the file you provide\n")
+		fmt.Fprintf(os.Stderr, "File cannot be located")
 	}
-	fmt.Println(readFile(f))
-}
 
-func readFile(f *os.File)int{
-	input := bufio.NewScanner(f)
-	ans := 0
+	defer file.Close()
+
+	input := bufio.NewScanner(file)
+	input.Split(bufio.ScanLines)
+
+	var lines []string
+
 	for input.Scan(){
-		str := input.Text()// If want i can add two more input.scan and two variable but i want to read 
-		//file ans whole and split it with string.split into array of chunck and then want to work on it
-		ans += commonItem(str)
+		lines = append(lines, input.Text())
 	}
-	return ans
+	ans := 0
+	i := 0
+	for i < len(lines){
+		temp := commonBadge(lines[i:i+3])	
+//		fmt.Println(temp)
+		ans += temp
+		i +=3
+	}
+	fmt.Println(ans)
 }
 
-func commonItem(str string)int{
-	mid := int(len(str)/2)
-	firstRack := str[:mid]
-	secondRack := str[mid:]
-	itemMap := make(map[byte]int8)
-	repeatedItem := make([]int, 0)
-	
-	for _, v := range firstRack{
-		c := byte(v)
-		if _, exists := itemMap[c]; exists {
-			continue
-		}else{
-			itemMap[c] = 1
+func commonBadge(str []string) int{
+	myMap := make(map[byte]int8)
+
+	for i, valArr := range str{
+		for _, val := range valArr{
+			c := byte(val)
+			if _, exist := myMap[c]; exist{
+				if i == 0{
+					continue
+				}else if i == 1{
+					if myMap[c] == 1{
+						myMap[c] += 1
+					}else{
+						continue
+					}	
+				}else{
+					if myMap[c] == 2{
+						myMap[c]+=1
+					}else{
+						continue
+					}
+					if myMap[c] == 3{
+						fmt.Printf("%c\n", c)
+						return getPiority(int(c))
+						}
+					}
+			}else{
+				if i ==0 {
+					myMap[c] = 1
+				}else{
+					continue
+				}
+			}
 		}
 	}
-	for _, v := range secondRack{
-		c := byte(v)
-		if _, exists := itemMap[c]; exists && itemMap[c] <= 1 {
-			repeatedItem = append(repeatedItem, int(c))
-			itemMap[c]++
-		}else{
-			continue
-		}
-	}
-	return  getPiority(&repeatedItem)
+
+	return 1	
 }
 
-func getPiority(item *[]int)int{
+func getPiority(c int)int{
 	val := 0
-	for _, v := range *item{
-		if v >= 97{
-			val += (v - 96)
-		}else{
-			val += (v - 38)	
-		}
+	if c >= 97{
+		val += (c - 96)
+	}else{
+		val += (c - 38)	
 	}
 	return val
 }
