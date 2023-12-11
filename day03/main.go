@@ -18,7 +18,8 @@ func readFile(f *os.File)int{
 	input := bufio.NewScanner(f)
 	ans := 0
 	for input.Scan(){
-		str := input.Text()
+		str := input.Text()// If want i can add two more input.scan and two variable but i want to read 
+		//file ans whole and split it with string.split into array of chunck and then want to work on it
 		ans += commonItem(str)
 	}
 	return ans
