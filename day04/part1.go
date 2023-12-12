@@ -34,18 +34,14 @@ func checkOverlap(strArr []string, line int)int{
 	str2 := strings.Split(strArr[1], "-")
 	int1 := stringToIntArray(str1)
 	int2 := stringToIntArray(str2)
-	if int1[0] >= int2[0] && int1[0] <= int2[1]{ 
-		//fmt.Println(line)
-		//fmt.Println(str1, str2)
+	if int1[0] >= int2[0] && int1[1] <= int2[1]{ 
+		fmt.Println(line)
+		fmt.Println(str1, str2)
 		return 1
-	}else if int2[0] >= int1[0] && int2[1] <= int1[0]{
-		//fmt.Println("condition 2")
-		//fmt.Println(line)
-		//fmt.Println(str1, str2)
-		return 1
-	}else if int2[1] >= int1[0] && int2[1] <= int1[1]{
-		return 1
-	}else if int1[1] >= int2[0] && int1[1] <= int2[1]{
+	}else if int2[0] >= int1[0] && int2[1] <= int1[1]{
+		fmt.Println("condition 2")
+		fmt.Println(line)
+		fmt.Println(str1, str2)
 		return 1
 	}
 	return 0
