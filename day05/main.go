@@ -3,8 +3,8 @@ package main
 import(
 	"fmt"
 	"os"
-	part  "github.com/Mohd-Sayeedul-Hoda/day5/part1"
-	//part "github.com/Mohd-Sayeedul-Hoda/day5/part2"
+	//part  "github.com/Mohd-Sayeedul-Hoda/day5/part1"
+	part "github.com/Mohd-Sayeedul-Hoda/day5/part2"
 )
 
 func main(){
@@ -14,5 +14,6 @@ func main(){
 		fmt.Fprintf(os.Stderr, "Can't open the provided file ")
 		return 
 	}
-	part.Part1(file)
+//	part.Part1(file)
+	part.Part2(file)
 }
