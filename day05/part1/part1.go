@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 type Stack struct{  
@@ -78,23 +79,23 @@ func MakeStack(input *bufio.Scanner)[]*Stack{
 }
 
 func Move(input *bufio.Scanner, arr []*Stack){
-//	firstTime := true
 	for input.Scan(){
-		str := input.Text()
-		if string(str) == ""{
+		char := input.Text()
+		if string(char) == ""{
 			continue
 		}
-		howMuch, err := strconv.Atoi(string(str[5]))
+		str := strings.Split(char, " ")
+		howMuch, err := strconv.Atoi(string(str[1]))
 		if err != nil{
 			fmt.Println("cannot convert it into string")
 			return
 		}
-		from, err := strconv.Atoi(string(str[12]))
+		from, err := strconv.Atoi(string(str[3]))
 		if err != nil{
 			fmt.Println("cannot convert it into string")
 			return
 		}
-		to, err := strconv.Atoi(string(str[17]))
+		to, err := strconv.Atoi(string(str[5]))
 		if err != nil{
 			fmt.Println("cannot convert it into string")
 			return
