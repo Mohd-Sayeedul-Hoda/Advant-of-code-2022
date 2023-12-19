@@ -1,10 +1,11 @@
 package main
 
 import (
-	part "github.com/Mohd-Sayeedul-Hoda/day06/part1"
-	//"github.com/Mohd-Sayeedul-Hoda/day06/part2"
+	//part1 "github.com/Mohd-Sayeedul-Hoda/day06/part1"
+	part2 "github.com/Mohd-Sayeedul-Hoda/day06/part2"
 )
 
 func main(){
-	part.Part1()
+	//part1.Part1()
+	part2.Part2()
 }
